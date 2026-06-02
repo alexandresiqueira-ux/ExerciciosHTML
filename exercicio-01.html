@@ -7,7 +7,7 @@ ESTE CÓDIGO POSSUI FALHAS GRAVES DE METADADOS, SEMÂNTICA, ACESSIBILIDADE E SEG
   - Adicionar internacionalização na tag raiz e metadados .
   - Configurar metadados descritivos de SEO e Open Graph (Social SEO).
   - Substituir a estrutura por elementos semânticos ( <header> , <main> , etc.).
-  - Vincular tags <label for="..."> aos respectivos inputs com IDs correspondentes.
+  - Vincular tags <label for="..."> aos respectivos inputs com IDcorrespondentes.
   - Converter o método do formulário para POST e o botão para o tipo nativo de submissão.
   - Aplicar obrigatoriedade, e-mail sintático e o atributo para forçar exatamente 11 dígitos numéricos inteiros no telefone celular.
 
@@ -15,33 +15,60 @@ ESTE CÓDIGO POSSUI FALHAS GRAVES DE METADADOS, SEMÂNTICA, ACESSIBILIDADE E SEG
 
 -->
 
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <title>página</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Entre em contato com a equipe de suporte backend da 365EVents. Envie suas dúvidas, mensagens ou problemas técnicos diretamente pelo nosso canal de atendimento.">
+    <title>365EVents - Contato com o Suporte</title>
 </head>
 <body>
-    <div id="cabecalho">
-        <div class="titulo">Área de Contato do Cliente</div>
-        <div class="menu">
+
+    <header>
+        <h1 class="titulo">Área de Contato do Cliente</h1>
+        <nav class="menu" aria-label="Navegação do cabeçalho">
             <a href="#">Ajuda</a> | <a href="#">Sair</a>
-        </div>
-    </div>
+        </nav>
+    </header>
 
-    <div id="corpo-da-pagina">
-        <div class="subtitulo">Envie sua mensagem para a nossa equipe de suporte backend</div>
-        
-        <form action="/enviar" method="GET">
-            Nome: <input type="text" name="nome"><br><br>
-            Email: <input type="text" name="email"><br><br>
-            Telefone Celular: <input type="text" name="celular"><br><br>
-            Mensagem: <textarea name="msg"></textarea><br><br>
+    <main>
+        <section aria-labelledby="topico-suporte">
+            <h2 id="topico-suporte" class="subtitulo">Envie sua mensagem para a nossa equipe de suporte backend</h2>
             
-            <input type="button" value="Disparar Dados">
-        </form>
-    </div>
+            <form action="/enviar" method="POST" aria-describedby="legenda-formulario">
+                <section class="conteudo-formulario">
+                    <h3 id="legenda-formulario">Dados de Contato e Mensagem</h3>
+                    
+                    <article class="grupo-campo">
+                        <label for="campo-nome">Nome:</label>
+                        <input type="text" id="campo-nome" name="nome" required minlength="3">
+                    </article>
+                    
+                    <article class="grupo-campo">
+                        <label for="campo-email">Email:</label>
+                        <input type="email" id="campo-email" name="email" required minlength="5">
+                    </article>
+                    
+                    <article class="grupo-campo">
+                        <label for="campo-celular">Telefone Celular:</label>
+                        <input type="tel" id="campo-celular" name="celular" pattern="[0-9]{11}" required title="Digite exatamente 11 números consecutivos (incluindo o DDD).">
+                    </article>
+                    
+                    <article class="grupo-campo">
+                        <label for="campo-msg">Mensagem:</label>
+                        <textarea id="campo-msg" name="msg" required minlength="10"></textarea>
+                    </article>
+                    
+                    <button type="submit">Disparar Dados</button>
+                </section>
+            </form>
+        </section>
+    </main>
 
-    <div id="rodape">
-        Suporte Tech 2026
-    </div>
+    <footer>
+        <p>&copy; 2026 Suporte Tech. Todos os direitos reservados.</p>
+    </footer>
+
 </body>
 </html>
